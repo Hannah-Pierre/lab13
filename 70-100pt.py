@@ -31,6 +31,23 @@ class MyApp:
        	    self.up.grid(row=0,column=0)
        	    # Bind an event to the first button
        	    self.up.bind("<Button-1>", self.upClicked)
+       	    self.right.bind("<Button-1>", self.rightClicked)
+            self.left.bind("<Button-1>", self.leftClicked)
+       	   # right button
+       	    self.myParent = parent  
+       	    self.myContainer1 = Frame(parent)
+       	    self.myContainer1.pack()
+       	    self.right = Button(self.myContainer1)
+            self.right.configure(text="Right", background= "yellow")
+            self.right.grid(row=0,column=1)	
+           # left button
+            self.myParent = parent  
+       	    self.myContainer1 = Frame(parent)
+       	    self.myContainer1.pack()
+            self.left = Button(self.myContainer1)
+            self.left.configure(text="Left", background= "blue")
+            self.left.grid(row=0,column=2)	
+		
        	    
        	    # No need to edit this - just includes the drawpad into our frame
        	    drawpad.pack(side=BOTTOM)
@@ -39,13 +56,22 @@ class MyApp:
 	    global drawpad
 	    global player
 	    # Remember to include your "enemies" with "global"
-	    	
+	    
+	def leftClicked(self, event):  
+            global oval
+            global player
+            drawpad.move(player, -20, 0)   	
 		
 	def upClicked(self, event):   
 	   global oval
 	   global player
 	   drawpad.move(player,0,-20)
-		
+        
+        def rightClicked(self, event):
+            global oval
+            global player
+            drawpad.move(player, 20, 0)
+	
 		
 app = MyApp(root)
 root.mainloop()
