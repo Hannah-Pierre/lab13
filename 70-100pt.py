@@ -71,7 +71,21 @@ class MyApp:
             global oval
             global player
             drawpad.move(player, 20, 0)
-	
+        direction = 1
+        enemy1 = drawpad.create_rectangle(10,10,15,15)     
+        x1, y1, x2, y2 = drawpad.coords(enemy1)
+        if x2 > drawpad.winfo_width():
+             direction = - 1
+        if y2 > drawpad.winfo_height(): 
+            direction = 1
+        drawpad.move(enemy1,1,direction)
+	enemy2 = drawpad.create_rectangle(10,10,15,15)     
+        x1, y1, x2, y2 = drawpad.coords(enemy2)
+        if x2 > drawpad.winfo_width():
+             direction = - 1
+        if y2 > drawpad.winfo_height(): 
+            direction = 1
+        drawpad.move(enemy2,1,direction)
 		
 app = MyApp(root)
 root.mainloop()
