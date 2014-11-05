@@ -75,43 +75,48 @@ class MyApp:
 direction = 1
 enemy1 = drawpad.create_rectangle(1,50,50,100, fill = "red")
 def animate():
+    global direction
     global enemy1
     x1, y1, x2, y2 = drawpad.coords(enemy1)
     if x2 > drawpad.winfo_width():
         direction = - 1
-    if y2 > drawpad.winfo_height(): 
+    elif x1 < 0: 
         direction = 1
-    drawpad.after(enemy1,1,animate)
-    drawpad.move(enemy1,direction,1)
-animate()
-enemy2 = drawpad.create_rectangle(1,200,50,250, fill = "orange")
-def animate():
+    drawpad.move(enemy1,direction,0)
+    drawpad.after(1,animate)
 
-    global enemy1
+animate()
+direction = 1
+enemy2 = drawpad.create_rectangle(1,200,50,250, fill = "orange")
+def animate1():
+    global direction
+    global enemy2
 	#enemy number 2
        
     x1, y1, x2, y2 = drawpad.coords(enemy2)
     if x2 > drawpad.winfo_width():
         direction = - 1
-    if y2 > drawpad.winfo_height(): 
+    if x1 > drawpad.winfo_height(): 
         direction = 1
-    drawpad.after(enemy2,1,animate)
-    drawpad.move(enemy3,direction,1)
+    drawpad.move(enemy2,direction,0)
+    drawpad.after(20,animate1)
+direction = 1   
+animate1()
 enemy3 = drawpad.create_rectangle(1,350,50,400, fill = "yellow")
-def animate():
-
-    global enemy1
+def animate2():
+    global direction
+    global enemy3
 	# enemy number 3
     
     x1, y1, x2, y2 = drawpad.coords(enemy3)
     if x2 > drawpad.winfo_width():
         direction = - 1
-    if y2 > drawpad.winfo_height(): 
+    if x1 > drawpad.winfo_height(): 
         direction = 1
-    drawpad.move(enemy3,direction,1)
-   
-    drawpad.after(enemy3,1,animate)
+    drawpad.move(enemy3,direction,0)
+    drawpad.after(30,animate2)
     	
-animate()
+animate2()
+
 app = MyApp(root)
 root.mainloop()
